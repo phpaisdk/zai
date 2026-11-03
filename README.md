@@ -1,53 +1,34 @@
-# aisdk/zai
+# PHP AI SDK — Z.AI
 
-Official ZAI provider for the PHP AI SDK. Uses ZAI's OpenAI-compatible API.
+Text generation, streaming, reasoning, and tool calling with GLM models. Part of the framework-agnostic [PHP AI SDK](https://phpaisdk.com).
+
+## Installation
 
 ```bash
 composer require aisdk/zai
 ```
 
-## Basic Usage
+Set `ZAI_API_KEY` in your environment.
+
+## Usage
 
 ```php
 use AiSdk\Generate;
 use AiSdk\ZAI;
 
-ZAI::create(['apiKey' => $_ENV['ZAI_API_KEY']]);
-
-$result = Generate::text('Explain this code briefly.')
-    ->model(ZAI::model('glm-5.1'))
+$result = Generate::text('Explain closures in PHP in one sentence.')
+    ->model(ZAI::model('glm-5.3'))
     ->run();
+
+echo $result->text;
 ```
-
-## Configuration
-
-| Variable | Description | Default |
-| --- | --- | --- |
-| `ZAI_API_KEY` | API key for authentication | Required |
-| `ZAI_BASE_URL` | General API root | `https://api.z.ai/api/paas/v4` |
-
-```php
-ZAI::create([
-    'apiKey' => $_ENV['ZAI_API_KEY'],
-    'baseUrl' => 'https://api.z.ai/api/paas/v4',
-]);
-```
-
-Use `https://api.z.ai/api/coding/paas/v4` as `baseUrl` only for ZAI's coding API when that is required by the selected account and model.
-
-## Supported Capabilities
-
-| Capability | Support |
-| --- | --- |
-| Text generation and streaming | Native OpenAI-compatible chat |
-| Tool calling, structured output, reasoning | Passed through for supported models |
-| Image input | Passed through for compatible vision models |
-
-## Provider Options
-
-Use `providerOptions('zai', ['raw' => [...]])` for documented ZAI chat-completions fields outside the portable SDK surface. Model IDs are opaque strings and are validated by ZAI.
 
 ## Documentation
 
-- [ZAI API documentation](https://docs.z.ai/guides/develop/http/introduction)
-- [PHP AI SDK documentation](https://phpaisdk.com/docs/zai)
+[Read the documentation](https://phpaisdk.com/docs/0.x/providers/zai) for configuration, supported features, and more examples.
+
+[Contributing](https://github.com/phpaisdk/.github/blob/main/CONTRIBUTING.md) · [Support](https://github.com/phpaisdk/.github/blob/main/SUPPORT.md)
+
+## License
+
+The MIT License (MIT). See [LICENSE](LICENSE) for details.
